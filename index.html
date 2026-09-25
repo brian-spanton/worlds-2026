@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Worlds 2026 — LoL World Championship Fan Hub</title>
+<meta name="description" content="A fan-built guide to the 2026 League of Legends World Championship: schedule, bracket, teams, players and history. Oct 15 – Nov 14, 2026 · Los Angeles · Allen TX · Brooklyn.">
+<style>
+/* ============ Worlds 2026 — light "hextech" design system ============ */
+:root{
+  --bg:#f7f5ef;            /* warm parchment */
+  --surface:#ffffff;
+  --surface-2:#fbf9f3;
+  --ink:#1e2a38;           /* deep navy ink */
+  --muted:#5d6b7d;
+  --faint:#8a97a8;
+  --border:#e7e1d2;
+  --gold:#c8a24b;          /* hextech gold */
+  --gold-dark:#8a6d1f;
+  --gold-tint:#fdf3d9;
+  --teal:#1f9d80;          /* positive / advance */
+  --teal-tint:#e2f4ee;
+  --blue:#3d7fc4;          /* info / links */
+  --blue-tint:#e8f1fb;
+  --red:#c05b4d;           /* elimination */
+  --red-tint:#fbe9e5;
+  --amber:#b98a1d;         /* TBD warnings */
+  --amber-tint:#fdf3d9;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(30,42,56,.05), 0 6px 18px -8px rgba(30,42,56,.10);
+  --shadow-lift:0 2px 4px rgba(30,42,56,.06), 0 14px 30px -10px rgba(30,42,56,.16);
+  --maxw:1060px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+svg{display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+/* ---------- header / hero ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#fbf9f3 0%,#f4f0e4 100%);border-bottom:1px solid var(--border)}
+.hero::after{content:"";position:absolute;inset:auto -10% -60% -10%;height:60%;
+  background:radial-gradient(closest-side,rgba(200,162,75,.16),transparent 70%);pointer-events:none}
+.hero-inner{max-width:var(--maxw);margin:0 auto;padding:44px 20px 34px;text-align:center;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);background:var(--gold-tint);border:1px solid #ecd9a8;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+h1{font-size:clamp(40px,8vw,72px);line-height:1.02;letter-spacing:-.02em;font-weight:800}
+h1 .gold{background:linear-gradient(92deg,#b58a2b,#e0b95c 55%,#9a7620);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{margin:14px auto 0;max-width:640px;color:var(--muted);font-size:clamp(15px,2.5vw,18px)}
+.badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+.badge{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;color:var(--ink);box-shadow:var(--shadow)}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.trophy{width:72px;height:72px;margin:0 auto 6px;filter:drop-shadow(0 6px 10px rgba(154,118,32,.28))}
+
+/* ---------- nav ---------- */
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(255,255,255,.98);backdrop-filter:blur(10px);border-top:1px solid var(--border);display:flex;justify-content:space-around}
+nav.tabs a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 2px 10px;font-size:10.5px;font-weight:600;color:var(--muted);text-align:center;text-decoration:none}
+nav.tabs a svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav.tabs a.active{color:var(--gold-dark)}
+nav.tabs a.active svg{stroke:var(--gold)}
+main{padding:26px 0 96px}
+@media(min-width:841px){
+  nav.tabs{position:sticky;top:0;bottom:auto;border-top:none;border-bottom:1px solid var(--border)}
+  nav.tabs a{flex:0 0 auto;flex-direction:row;gap:8px;padding:13px 18px;font-size:14px;border-radius:0}
+  nav.tabs{justify-content:center}
+  nav.tabs a.active{background:var(--gold-tint);box-shadow:inset 0 -2px 0 var(--gold)}
+  main{padding:34px 0 60px}
+}
+
+/* ---------- sections & cards ---------- */
+section.view{display:none}
+section.view.active{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2{font-size:clamp(24px,4.5vw,32px);letter-spacing:-.02em;margin:6px 0 6px;font-weight:800}
+h2 .ico{margin-right:8px}
+.lede{color:var(--muted);max-width:680px;margin-bottom:20px;font-size:15.5px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1fr}
+.g3{grid-template-columns:1fr}
+.g4{grid-template-columns:repeat(2,1fr)}
+@media(min-width:841px){.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.card h3{font-size:16.5px;margin-bottom:8px;font-weight:700;display:flex;align-items:center;gap:8px}
+.card p{color:var(--muted);font-size:14px}
+.card.gold-top{border-top:3px solid var(--gold)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.pill.t{background:var(--teal-tint);color:var(--teal)}
+.pill.r{background:var(--red-tint);color:var(--red)}
+.pill.b{background:var(--blue-tint);color:var(--blue)}
+.pill.a{background:var(--amber-tint);color:var(--amber)}
+.pill.g{background:#f0ecdf;color:var(--gold-dark)}
+.num{font-size:34px;font-weight:800;letter-spacing:-.02em;color:var(--gold-dark)}
+.statlabel{font-size:12.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.note{display:flex;gap:10px;background:var(--amber-tint);border:1px solid #eedfb2;border-radius:var(--radius);padding:14px 16px;font-size:13.5px;color:#6b5514;margin:16px 0}
+.note.blue{background:var(--blue-tint);border-color:#c9ddf2;color:#2a5c8f}
+.note.teal{background:var(--teal-tint);border-color:#bfe4d8;color:#186957}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink)}
+.chip b{color:var(--gold-dark)}
+.list-tight li{margin-bottom:8px;color:var(--muted);font-size:14px;list-style:none;position:relative;padding-left:18px}
+.list-tight li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.list-tight li b{color:var(--ink)}
+
+/* ---------- schedule ---------- */
+.stage-row{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:18px 0;border-bottom:1px dashed var(--border)}
+.stage-row:last-child{border-bottom:none}
+.stage-date{font-weight:800;font-size:15px;color:var(--gold-dark);line-height:1.25}
+.stage-date small{display:block;font-weight:600;color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.stage-body h3{font-size:17px;font-weight:700;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.stage-body p{color:var(--muted);font-size:13.5px;margin-top:3px}
+.venue{font-size:12.5px;color:var(--blue);font-weight:600}
+@media(min-width:640px){.stage-row{grid-template-columns:110px 1fr;gap:22px}}
+
+/* ---------- bracket visuals ---------- */
+.bracket-wrap{overflow-x:auto;padding-bottom:6px}
+.bracket{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:26px;min-width:680px;align-items:center}
+.br-col{display:flex;flex-direction:column;justify-content:space-around;gap:18px;min-height:100%}
+.match{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);min-width:150px}
+.match .side{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;font-size:12.5px;font-weight:600;border-bottom:1px solid var(--surface-2)}
+.match .side:last-child{border-bottom:none}
+.match .side.win{background:var(--teal-tint);color:var(--teal)}
+.match .side .seed{color:var(--faint);font-weight:500;font-size:11px;margin-right:6px}
+.match-label{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:6px;text-align:center}
+.champ-slot{border:2px solid var(--gold);background:var(--gold-tint);border-radius:10px;padding:12px;text-align:center;font-weight:800;color:var(--gold-dark)}
+.arrowflow{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:641px){.arrowflow{grid-template-columns:1fr 24px 1fr;align-items:center}}
+.flowbox{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow)}
+.flowbox h4{font-size:14px;margin-bottom:4px}
+.flowbox p{font-size:12.5px;color:var(--muted)}
+.flowarrow{display:none;color:var(--gold);font-weight:800}
+@media(min-width:641px){.flowarrow{display:block;text-align:center;font-size:20px}}
+.swisspool{display:flex;flex-wrap:wrap;gap:8px}
+.swissteam{display:inline-flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600}
+.swissteam .rg{font-size:10px;font-weight:800;padding:1px 6px;border-radius:6px}
+.tbd{border-style:dashed;color:var(--muted);background:var(--amber-tint);border-color:#eedfb2}
+
+/* ---------- teams ---------- */
+.regionbar{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px}
+.regionbar button{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;font-family:inherit}
+.regionbar button:hover{border-color:var(--gold)}
+.regionbar button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.team{display:flex;flex-direction:column;gap:10px}
+.team-head{display:flex;align-items:center;gap:12px}
+.mono{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex:none;letter-spacing:.02em}
+.team-head h3{font-size:17px;margin:0}
+.team-head .sub{font-size:12px;color:var(--faint);font-weight:600}
+.team p{font-size:13.5px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:13px}
+.kv dt{color:var(--faint);font-weight:600;white-space:nowrap}
+.kv dd{color:var(--ink);font-weight:500}
+.roster{display:flex;flex-wrap:wrap;gap:6px}
+.roster span{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:3px 9px;font-size:12px;font-weight:600}
+.roster span em{font-style:normal;color:var(--faint);font-weight:500;font-size:10.5px;margin-left:4px}
+
+/* ---------- players ---------- */
+.player{position:relative;overflow:hidden}
+.player .role{position:absolute;top:16px;right:16px}
+.player h3{margin-bottom:2px}
+.player .alias{font-size:12.5px;font-weight:700;color:var(--blue);margin-bottom:8px}
+.player ul{margin-top:8px}
+
+/* ---------- history ---------- */
+.hist-row{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:13px 0;border-bottom:1px dashed var(--border);align-items:baseline}
+.hist-row:last-child{border-bottom:none}
+.hist-year{font-weight:800;font-size:17px;color:var(--gold-dark)}
+.hist-main{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14.5px}
+.hist-main .beat{color:var(--muted);font-size:13px}
+.hist-main .beat::before{content:"·";margin-right:8px;color:var(--border)}
+@media(min-width:641px){.hist-row{grid-template-columns:90px 1fr}.hist-year{font-size:18px}}
+.trophy-count{display:inline-flex;align-items:center;gap:4px;font-weight:800;color:var(--gold-dark)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--border);margin-top:44px;padding:26px 20px calc(26px + 64px);text-align:center;color:var(--faint);font-size:12.5px}
+footer a{color:var(--blue)}
+@media(min-width:841px){footer{padding-bottom:34px}}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+</style>
+</head>
+<body>
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-inner">
+    <svg class="trophy" viewBox="0 0 64 64" aria-hidden="true">
+      <defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#e3c06a"/><stop offset=".55" stop-color="#c8a24b"/><stop offset="1" stop-color="#96731f"/>
+      </linearGradient></defs>
+      <path d="M20 8h24v14c0 9-5.4 16-12 16s-12-7-12-16V8z" fill="url(#tg)"/>
+      <path d="M20 12h-8c0 8 3.5 13 9 14M44 12h8c0 8-3.5 13-9 14" stroke="url(#tg)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M29 38h6v8h-6z" fill="#b08c33"/>
+      <path d="M22 50h20l2 6H20l2-6z" fill="url(#tg)"/>
+      </svg>
+    <span class="kicker">Worlds 2026 · United States</span>
+    <h1>The Road to <span class="gold">Worlds</span> 2026</h1>
+    <p class="sub">Everything about the biggest League of Legends tournament of the year — whether it's your first Worlds or your fifteenth.</p>
+    <div class="badges">
+      <span class="badge"><span class="dot"></span>Oct 15 – Nov 14, 2026</span>
+      <span class="badge">📍 Los Angeles → Allen, TX → Brooklyn</span>
+      <span class="badge">19 teams · 6 regions</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="tabs" id="tabs" aria-label="Site sections">
+  <a href="#home" data-tab="home" class="active"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5"/></svg>Home</a>
+  <a href="#schedule" data-tab="schedule"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Schedule</a>
+  <a href="#bracket" data-tab="bracket"><svg viewBox="0 0 24 24"><path d="M4 5h5v4H4zM15 5h5v4h-5zM9.5 15h5v4h-5z"/><path d="M6.5 9v3h11V9M12 12v3"/></svg>Bracket</a>
+  <a href="#teams" data-tab="teams"><svg viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>Teams</a>
+  <a href="#players" data-tab="players"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>Players</a>
+  <a href="#history" data-tab="history"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>History</a>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ HOME ============ -->
+<section class="view active" id="view-home">
+  <h2><span class="ico">🏆</span>Welcome to Worlds</h2>
+  <p class="lede">The World Championship is the Super Bowl of League of Legends: one month, the best 19 teams on the planet, one trophy. This guide covers everything — no prior knowledge needed.</p>
+
+  <div class="grid g3">
+    <div class="card gold-top">
+      <h3>🆕 Brand new to LoL esports?</h3>
+      <p><b>Start here.</b> League of Legends is a 5-vs-5 strategy game; the pro season ends with one giant world tournament. Teams qualify through their regional leagues (Korea, China, Europe, the Americas, and more).</p>
+      <p style="margin-top:10px"><b>How a match works:</b> two teams of five pick from 160+ champions, then battle on one map. Destroy the enemy's base to win the game. Most matches are "best of 3" or "best of 5" — first to more wins takes the series.</p>
+    </div>
+    <div class="card">
+      <h3>⚔️ The format in 20 seconds</h3>
+      <ul class="list-tight">
+        <li><b>Play-In (Oct 15–18):</b> 4 underdog teams fight for 1 remaining spot</li>
+        <li><b>Swiss Stage (Oct 23–31):</b> 16 teams, 5 rounds — win 3 to advance, lose 3 and you're out</li>
+        <li><b>Knockouts (Nov 3–8):</b> the last 8 teams in a single-elimination bracket — lose once, go home</li>
+        <li><b>Grand Final (Nov 14):</b> best of 5 at Barclays Center, Brooklyn, for the Summoner's Cup</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>📜 The story going in</h3>
+      <p><b>T1 (Korea) are the three-time defending champions</b> — they've won 2023, 2024 and 2025, and their mid laner <b>Faker</b> is the most famous esports player ever. No team has ever won four in a row.</p>
+      <p style="margin-top:10px">Chasing them: <b>Gen.G</b> and <b>Hanwha Life</b> (Korea's other titans), <b>Bilibili Gaming</b> (twice a finalist, still chasing their first title), and Europe's <b>G2</b> — the West's best hope.</p>
+    </div>
+  </div>
+
+  <div class="note teal" style="margin-top:18px"><span>🗓️</span><div><b>The journey is a three-city tour.</b> It starts in Los Angeles (Play-In), moves to Allen, Texas near Dallas (Swiss + knockouts), and ends at the Barclays Center in Brooklyn — the first East Coast Worlds final ever.</div></div>
+
+  <h2 style="margin-top:34px"><span class="ico">📊</span>2026 at a glance</h2>
+  <div class="grid g4">
+    <div class="card" style="text-align:center"><div class="num">19</div><div class="statlabel">Teams qualified</div></div>
+    <div class="card" style="text-align:center"><div class="num">31</div><div class="statlabel">Days of competition</div></div>
+    <div class="card" style="text-align:center"><div class="num">6</div><div class="statlabel">Regions represented</div></div>
+    <div class="card" style="text-align:center"><div class="num">3rd</div><div class="statlabel">Defending titles for T1</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>🌐 The regions (watch these letters!)</h3>
+      <dl class="kv" style="margin-top:6px">
+        <dt>LCK · Korea</dt><dd>The strongest league — 4 slots. Gen.G, Hanwha Life, T1, Dplus KIA</dd>
+        <dt>LPL · China</dt><dd>Aggressive and chaotic — 4 slots. BLG, Top Esports, Anyone's Legend, Invictus</dd>
+        <dt>LEC · Europe</dt><dd>The West's heavyweight — 3 slots. G2, Movistar KOI, Karmine Corp</dd>
+        <dt>LCS · North America</dt><dd>The host region — 3 slots. Cloud9, Team Liquid, +1 TBD</dd>
+        <dt>LCP · Asia-Pacific</dt><dd>Taiwan/Vietnam/Japan — 3 slots. TSW, CTBC Flying Oyster, MVK</dd>
+        <dt>CBLOL · Brazil</dt><dd>Loudest fans on earth — 2 slots (TBD by Oct 10)</dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h3>🎯 Words you'll hear on broadcast</h3>
+      <dl class="kv" style="margin-top:6px">
+        <dt>Bo1 / Bo3 / Bo5</dt><dd>Best of 1 / 3 / 5 — how many games the series needs</dd>
+        <dt>Swiss</dt><dd>A format where teams with the same record play each other each round</dd>
+        <dt>Fearless draft</dt><dd>Champions picked in earlier games are banned for the rest of the series</dd>
+        <dt>Seed</dt><dd>A team's ranking from their region — #1 seeds are strongest</dd>
+        <dt>Upset</dt><dd>When a weaker team beats a favorite</dd>
+        <dt>Summoner's Cup</dt><dd>The championship trophy</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:18px"><span>🚧</span><div><b>This site is a work in progress.</b> Brazil's two teams are decided by Oct 10, the last LCS seed by Oct 4, rosters and daily match times drop closer to the event — those spots show as <b>⚠︎ TBD</b> and get filled in as they're announced. Sources: Riot/lolesports announcements and Wikipedia's 2026 Worlds pages; updated through late September 2026.</div></div>
+</section>
+<!-- ============ SCHEDULE ============ -->
+<section class="view" id="view-schedule">
+  <h2><span class="ico">🗓️</span>Schedule</h2>
+  <p class="lede">A month-long road trip across America. Daily match times are announced by Riot closer to each stage — those slots stay ⚠︎ TBA until then. All times below are local to the venue.</p>
+
+  <div class="grid g2" style="margin-bottom:22px">
+    <div class="card">
+      <h3>🇺🇸 Stop 1 — Los Angeles</h3>
+      <p class="venue">Riot Games Arena · Play-In stage</p>
+      <p>Oct 15–18. The LCS studio arena (capacity ~300) hosts four qualifying teams in an intimate, do-or-die bracket.</p>
+    </div>
+    <div class="card">
+      <h3>🤠 Stop 2 — Allen, Texas</h3>
+      <p class="venue">Credit Union of Texas Event Center · Swiss + Knockouts</p>
+      <p>Oct 23 – Nov 8. A Dallas suburb arena (8,100 seats) hosts the main event — 16-team Swiss, then quarters and semis.</p>
+    </div>
+    <div class="card">
+      <h3>🗽 Stop 3 — Brooklyn, NYC</h3>
+      <p class="venue">Barclays Center · Grand Final</p>
+      <p>Nov 14. Nineteen thousand seats for the final — the first time the East Coast hosts a Worlds final.</p>
+    </div>
+    <div class="card">
+      <h3>📺 How to watch</h3>
+      <p>Every match streams free on <a href="https://lolesports.com" target="_blank" rel="noopener">lolesports.com</a> and the official LoL Esports channels on Twitch and YouTube. VODs land within hours.</p>
+    </div>
+  </div>
+
+  <div class="card" style="padding:6px 22px">
+    <div class="stage-row">
+      <div class="stage-date">Oct 15–18<small>2026</small></div>
+      <div class="stage-body">
+        <h3>Play-In Stage <span class="pill b">Bo5 double elim</span></h3>
+        <p>Four teams — the play-in seeds from LEC, LCS, LCP and CBLOL — fight for the last Swiss spot. Lose twice and your season is over.</p>
+        <p class="venue">🏟️ Riot Games Arena, Los Angeles, CA</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Oct 19–22<small>break</small></div>
+      <div class="stage-body">
+        <h3>Tournament break <span class="pill a">no matches</span></h3>
+        <p>The event moves from LA to Texas. Analysts obsess over the Swiss draw; teams scrim in peace.</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Oct 23–26<small>2026</small></div>
+      <div class="stage-body">
+        <h3>Swiss Stage — Rounds 1–3 <span class="pill g">Bo1s</span></h3>
+        <p>Round 1: #1 seeds face #4-type seeds from other regions. From round 2 on, teams with the same record meet. Early Bo1s punish one bad day.</p>
+        <p class="venue">🏟️ Credit Union of Texas Event Center, Allen, TX</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Oct 27<small>break</small></div>
+      <div class="stage-body">
+        <h3>Rest day <span class="pill a">no matches</span></h3>
+        <p>Breathe. Check the standings — someone is already 2-0, someone is already 0-2.</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Oct 28–31<small>2026</small></div>
+      <div class="stage-body">
+        <h3>Swiss Stage — Rounds 4–5 <span class="pill b">Bo3s</span></h3>
+        <p>The pressure rounds: 2-2 teams play elimination Bo3s, 2-1 vs 1-2 decides who advances at 3-2. First eight teams to 3 wins reach the knockouts.</p>
+        <p class="venue">🏟️ Credit Union of Texas Event Center, Allen, TX</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Nov 1–2<small>break</small></div>
+      <div class="stage-body">
+        <h3>Tournament break <span class="pill a">no matches</span></h3>
+        <p>Eight teams remain. Quarterfinal matchups come out of the Swiss results.</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Nov 3–6<small>2026</small></div>
+      <div class="stage-body">
+        <h3>Quarterfinals <span class="pill b">Bo5</span></h3>
+        <p>Four Bo5s across four days. Single elimination from here — the defending champs start their run here.</p>
+        <p class="venue">🏟️ Credit Union of Texas Event Center, Allen, TX</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Nov 7–8<small>2026</small></div>
+      <div class="stage-body">
+        <h3>Semifinals <span class="pill b">Bo5</span></h3>
+        <p>Two matches decide Brooklyn. Semis weekend is traditionally where legends are made.</p>
+        <p class="venue">🏟️ Credit Union of Texas Event Center, Allen, TX</p>
+      </div>
+    </div>
+    <div class="stage-row">
+      <div class="stage-date">Nov 14<small>2026</small></div>
+      <div class="stage-body">
+        <h3>🏆 Grand Final <span class="pill g">Bo5</span></h3>
+        <p>The Summoner's Cup match at Barclays Center. Expect a champion crowned around 10–11pm Eastern.</p>
+        <p class="venue">🏟️ Barclays Center, Brooklyn, New York, NY</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:18px"><span>⚠︎</span><div><b>Exact daily start times are TBA.</b> Riot publishes the detailed match schedule per stage roughly 1–2 weeks ahead. When it drops, this list gets day-by-day times and matchups filled in.</div></div>
+</section>
+<!-- ============ BRACKET ============ -->
+<section class="view" id="view-bracket">
+  <h2><span class="ico">🗺️</span>Bracket &amp; Stages</h2>
+  <p class="lede">19 teams enter, one lifts the Summoner's Cup. Here's the whole road, stage by stage.</p>
+
+  <!-- journey flow -->
+  <div class="arrowflow" style="margin:18px 0 26px">
+    <div class="flowbox">
+      <h4>① Play-In <span class="pill b" style="margin-left:6px">4 teams → 1</span></h4>
+      <p>Oct 15–18 · Los Angeles. Double-elimination Bo5 gauntlet. The four lowest seeds; winner takes the 16th Swiss slot.</p>
+    </div>
+    <div class="flowarrow">→</div>
+    <div class="flowbox">
+      <h4>② Swiss Stage <span class="pill g" style="margin-left:6px">16 → 8</span></h4>
+      <p>Oct 23–31 · Allen, TX. Five rounds; win 3 to qualify, lose 3 to go home. Same-record matchups each round, Bo3s in the decisive rounds.</p>
+    </div>
+    <div class="flowarrow">→</div>
+    <div class="flowbox">
+      <h4>③ Knockouts <span class="pill r" style="margin-left:6px">8 → 2</span></h4>
+      <p>Nov 3–8 · Allen, TX. Quarterfinals then semifinals, single-elimination Bo5s. One bad day ends your year.</p>
+    </div>
+    <div class="flowarrow">→</div>
+    <div class="flowbox" style="border-color:var(--gold);background:var(--gold-tint)">
+      <h4>🏆 Grand Final <span class="pill a" style="margin-left:6px">Nov 14</span></h4>
+      <p>Barclays Center, Brooklyn. One Bo5 for the Summoner's Cup.</p>
+    </div>
+  </div>
+
+  <!-- how the 16 swiss slots fill -->
+  <h2 style="font-size:20px;margin-top:8px">How the 16 Swiss slots fill</h2>
+  <p class="lede" style="margin-bottom:14px">Seeds come from regional playoffs — a #1 seed from Korea is the strongest kind of team in the tournament.</p>
+  <div class="grid g3">
+    <div class="card">
+      <h3>🇰🇷 LCK — 4 teams</h3>
+      <p><b>All direct to Swiss:</b> Gen.G (#1), Hanwha Life (#2, MSI winner), T1 (#3), Dplus KIA (#4)</p>
+    </div>
+    <div class="card">
+      <h3>🇨🇳 LPL — 4 teams</h3>
+      <p><b>All direct to Swiss:</b> Anyone's Legend (#1), Bilibili Gaming (#2), Top Esports (#3), Invictus Gaming (#4)</p>
+    </div>
+    <div class="card">
+      <h3>🇪🇺 LEC — 3 teams</h3>
+      <p>G2 (#1) and Movistar KOI (#2) direct to Swiss · <b>Karmine Corp → Play-In</b></p>
+    </div>
+    <div class="card">
+      <h3>🇺🇸 LCS — 3 teams</h3>
+      <p>Cloud9 &amp; Team Liquid have <b>clinched berths</b> — but their final playoff ranks (due Oct 4) decide who goes to Swiss and who drops to Play-In. Third berth: still being played for.</p>
+    </div>
+    <div class="card">
+      <h3>🌏 LCP — 3 teams</h3>
+      <p>Team Secret Whales (#1) &amp; CTBC Flying Oyster (#2) direct to Swiss · <b>MVK Esports → Play-In</b></p>
+    </div>
+    <div class="card">
+      <h3>🇧🇷 CBLOL — 2 teams</h3>
+      <p>Split 2 champion direct to Swiss · <b>runner-up → Play-In</b> <span class="pill a" style="margin-left:4px">decided Oct 10</span></p>
+    </div>
+  </div>
+
+  <!-- play-in bracket -->
+  <h2 style="margin-top:30px">Play-In bracket <span class="pill b" style="vertical-align:middle">Oct 15–18</span></h2>
+  <p class="lede" style="margin-bottom:14px">Four teams, double elimination, every series a Bo5. Pairings come out of the post-seeding draw — shown below as placeholders.</p>
+  <div class="bracket-wrap">
+    <div class="bracket" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="br-col">
+        <div class="match-label">Upper bracket</div>
+        <div class="match">
+          <div class="side"><span>UB Semifinal 1</span><span class="pill a">draw TBD</span></div>
+          <div class="side"><span>Play-in seed vs play-in seed</span><span></span></div>
+        </div>
+        <div class="match">
+          <div class="side"><span>UB Semifinal 2</span><span class="pill a">draw TBD</span></div>
+          <div class="side"><span>Play-in seed vs play-in seed</span><span></span></div>
+        </div>
+      </div>
+      <div class="br-col">
+        <div class="match-label">Lower bracket</div>
+        <div class="match">
+          <div class="side"><span>LB Round 1</span><span class="pill b">losers of UB semis</span></div>
+          <div class="side"><span>Loser stays alive / eliminated</span><span></span></div>
+        </div>
+        <div class="match">
+          <div class="side"><span>LB Final</span><span class="pill b">last chance</span></div>
+          <div class="side"><span>LB R1 winner vs UB Final loser</span><span></span></div>
+        </div>
+      </div>
+      <div class="br-col">
+        <div class="match-label">Play-In Grand Final</div>
+        <div class="match" style="border-color:var(--gold)">
+          <div class="side"><span>UB Final winner</span><span class="pill g">undefeated run</span></div>
+          <div class="side"><span>LB Final winner</span><span class="pill b">survived twice</span></div>
+        </div>
+        <div class="champ-slot" style="margin-top:14px">Winner advances to<br>Swiss Stage as 16th seed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- knockout bracket -->
+  <h2 style="margin-top:34px">Knockout bracket <span class="pill r" style="vertical-align:middle">Nov 3–14</span></h2>
+  <p class="lede" style="margin-bottom:14px">Eight survivors of Swiss, single elimination, all Bo5. Slots fill as the Swiss stage concludes (Oct 31).</p>
+  <div class="bracket-wrap">
+    <div class="bracket">
+      <div class="br-col">
+        <div class="match-label">Quarterfinals · Nov 3–6</div>
+        <div class="match">
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+        </div>
+        <div class="match">
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+        </div>
+        <div class="match">
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+        </div>
+        <div class="match">
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+          <div class="side"><span>Swiss qualifier</span><span class="pill a">TBD</span></div>
+        </div>
+      </div>
+      <div class="br-col">
+        <div class="match-label">Semifinals · Nov 7–8</div>
+        <div class="match">
+          <div class="side"><span>QF1 winner</span><span class="pill a">TBD</span></div>
+          <div class="side"><span>QF2 winner</span><span class="pill a">TBD</span></div>
+        </div>
+        <div class="match">
+          <div class="side"><span>QF3 winner</span><span class="pill a">TBD</span></div>
+          <div class="side"><span>QF4 winner</span><span class="pill a">TBD</span></div>
+        </div>
+      </div>
+      <div class="br-col">
+        <div class="match-label">Final · Nov 14</div>
+        <div class="match" style="border-color:var(--gold)">
+          <div class="side"><span>SF1 winner</span><span class="pill a">TBD</span></div>
+          <div class="side"><span>SF2 winner</span><span class="pill a">TBD</span></div>
+        </div>
+        <div class="champ-slot" style="margin-top:16px">🏆 Summoner's Cup<br><span style="font-size:12px;font-weight:600">Barclays Center · Brooklyn</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ TEAMS ============ -->
+<section class="view" id="view-teams">
+  <h2><span class="ico">🛡️</span>Teams</h2>
+  <p class="lede">All 19 participants, grouped by region. Rosters are locked closer to the event — until then they show ⚠︎ TBD. Tap a region to filter.</p>
+
+  <div class="regionbar" id="regionbar" role="tablist" aria-label="Filter by region"></div>
+  <div class="grid g2" id="teamsGrid"></div>
+
+  <div class="note" style="margin-top:20px"><span>🇧🇷</span><div><b>Brazil's two teams are still being decided.</b> LOUD, Los Grandes, FURIA and RED Canids Kalunga are fighting it out in CBLOL Split 2 — the champion goes straight to Swiss, the runner-up to Play-In. Finalized by <b>Oct 10</b>. The last LCS berth lands <b>Oct 4</b>.</div></div>
+</section>
+<!-- ============ PLAYERS ============ -->
+<section class="view" id="view-players">
+  <h2><span class="ico">⭐</span>Players to know</h2>
+  <p class="lede">Eight stars who could own this tournament. Positions: Top / Jungle / Mid / Bot (ADC) / Support — the five roles on every team. Full 19-team rosters drop closer to Worlds, so team pages show ⚠︎ TBD until then.</p>
+  <div class="grid g2" id="playersGrid"></div>
+
+  <div class="note blue" style="margin-top:20px"><span>🎓</span><div><b>New to the roles?</b> Top laners duel in isolation up top. Junglers roam the map to ambush and secure objectives. Mids control the center of the action. Bots (ADCs) deal sustained damage late-game. Supports protect and enable everyone else. "Farm" means earning gold by killing minions.</div></div>
+</section>
+
+<!-- ============ HISTORY ============ -->
+<section class="view" id="view-history">
+  <h2><span class="ico">📜</span>Every Worlds ever</h2>
+  <p class="lede">Fifteen champions across fifteen years. Korea dominates the all-time table; no team has ever won more than two in a row — until T1's current three.</p>
+
+  <div class="grid g4" style="margin-bottom:20px">
+    <div class="card" style="text-align:center"><div class="num">6</div><div class="statlabel">T1 titles (2013·15·16·23·24·25)</div></div>
+    <div class="card" style="text-align:center"><div class="num">4</div><div class="statlabel">Korea's top-league win streak 2013–17</div></div>
+    <div class="card" style="text-align:center"><div class="num">2</div><div class="statlabel">Titles for China's LPL (2021 · 2022)</div></div>
+    <div class="card" style="text-align:center"><div class="num">1</div><div class="statlabel">Title for Europe (Fnatic, 2011)</div></div>
+  </div>
+
+  <div class="card" style="padding:6px 22px" id="histCard"></div>
+
+  <div class="note" style="margin-top:18px"><span>🔮</span><div><b>The four-peat question.</b> Dynasties usually crack eventually — no team has ever won four straight Worlds. If T1 lifts the Cup again on Nov 14, they'd stand alone in esports history.</div></div>
+</section>
+<script>
+/* ================= DATA ================= */
+const REGIONS = {
+  LCK:{label:"LCK · Korea",flag:"🇰🇷"}, LPL:{label:"LPL · China",flag:"🇨🇳"},
+  LEC:{label:"LEC · Europe",flag:"🇪🇺"}, LCS:{label:"LCS · North America",flag:"🇺🇸"},
+  LCP:{label:"LCP · Asia-Pacific",flag:"🌏"}, CBLOL:{label:"CBLOL · Brazil",flag:"🇧🇷"}
+};
+
+const TEAMS = [
+  {id:"geng",name:"Gen.G",mono:"GEN",color:"#111111",region:"LCK",stage:"swiss",seed:"LCK #1",
+   path:"Season champion",
+   blurb:"The LCK's machine. Seven straight Worlds appearances since 2020, and the most dominant regular season team of the modern era.",
+   hist:["2 world titles in the Samsung lineage (2014, 2017)","Worlds semifinalist 2022–2025 era mainstay","2026 LCK season champions"]},
+  {id:"hle",name:"Hanwha Life Esports",mono:"HLE",color:"#2ab39b",region:"LCK",stage:"swiss",seed:"LCK #2 · MSI winner",
+   path:"MSI 2026 champion",
+   blurb:"Won MSI 2026 in Daejeon, beating Bilibili Gaming 3–2 in a five-game classic. Formerly the KOO Tigers — a name from 2015 still carries weight here.",
+   hist:["MSI 2026 champions","2015 Worlds finalists (as KOO Tigers)","6th Worlds appearance"]},
+  {id:"t1",name:"T1",mono:"T1",color:"#e2012d",region:"LCK",stage:"swiss",seed:"LCK #3 · defending champ",
+   path:"Season 3rd place",
+   blurb:"The greatest organization in League history. Chasing a FOURTH consecutive world title — something no team has ever done — with 30-year-old Faker still at the center of it all.",
+   hist:["6× world champions (2013, 2015, 2016, 2023, 2024, 2025)","3-peating now — no team has ever 4-peated","11 Worlds finals appearances all-time"]},
+  {id:"dk",name:"Dplus KIA",mono:"DK",color:"#1c47e0",region:"LCK",stage:"swiss",seed:"LCK #4",
+   path:"Season 4th place",
+   blurb:"The 2020 world champions (as DAMWON Gaming), back after missing 2025. Young roster, nothing to lose.",
+   hist:["2020 world champions (as DAMWON Gaming)","2022 Worlds finalists","6th appearance in 7 years"]},
+  {id:"al",name:"Anyone's Legend",mono:"AL",color:"#a02828",region:"LPL",stage:"swiss",seed:"LPL #1",
+   path:"Split 3 champion",
+   blurb:"China's breakout story of 2026 — a young organization that dethroned the LPL's giants to grab the #1 seed.",
+   hist:["2026 LPL Split 3 champions","Worlds debut"]},
+  {id:"blg",name:"Bilibili Gaming",mono:"BLG",color:"#00a0a8",region:"LPL",stage:"swiss",seed:"LPL #2",
+   path:"Championship points",
+   blurb:"The dragon that keeps climbing. Runners-up at Worlds 2024, MSI 2026 finalists — still hunting their first world title.",
+   hist:["2024 Worlds runners-up (lost 3–2 to T1)","MSI 2026 finalists","LPL championship points leader"]},
+  {id:"tes",name:"Top Esports",mono:"TES",color:"#2b2b2b",region:"LPL",stage:"swiss",seed:"LPL #3",
+   path:"Regional qualifier",
+   blurb:"Perennial LPL power with the loudest fanbase in China. Won the regional qualifier gauntlet to take the third seed.",
+   hist:["Worlds semifinalist (2020)","Multiple LPL titles","Still chasing a first international trophy"]},
+  {id:"ig",name:"Invictus Gaming",mono:"IG",color:"#444444",region:"LPL",stage:"swiss",seed:"LPL #4",
+   path:"Regional qualifier",
+   blurb:"The original Chinese champions — 2018's historic first Worlds title for the LPL. A legacy name returning to the big stage.",
+   hist:["2018 world champions (LPL's first title)","2019 Worlds semifinalist"]},
+  {id:"g2",name:"G2 Esports",mono:"G2",color:"#111111",region:"LEC",stage:"swiss",seed:"LEC #1",
+   path:"Summer champion",
+   blurb:"Europe's most decorated team and the West's perennial best hope. Known for fearless, chaotic drafts — fitting for a Fearless Draft tournament.",
+   hist:["2019 Worlds finalists","MSI 2019 champions","LEC 2026 Summer champions"]},
+  {id:"koi",name:"Movistar KOI",mono:"KOI",color:"#4a3fbf",region:"LEC",stage:"swiss",seed:"LEC #2",
+   path:"Summer runner-up",
+   blurb:"The org backed by streaming superstar Ibai Llanos — and arguably the most passionate fanbase in the West.",
+   hist:["2026 LEC Summer runner-up","Rising European power"]},
+  {id:"kc",name:"Karmine Corp",mono:"KC",color:"#16213e",region:"LEC",stage:"playin",seed:"LEC #3",
+   path:"Summer 3rd place",
+   blurb:"France's colossus — a fanbase that fills entire arenas. Their first road to Worlds runs through the Play-In gauntlet.",
+   hist:["LEC Summer 3rd place 2026","Massive French fanbase, arena-filling crowds"]},
+  {id:"c9",name:"Cloud9",mono:"C9",color:"#00a3e0",region:"LCS",stage:"swiss",seed:"LCS (rank TBD)",
+   path:"Summer top-3 (clinched)",
+   blurb:"North America's most successful org, back at Worlds for the first time since 2023 after a 3–1 upset over reigning champs LYON.",
+   hist:["11th Worlds appearance","Worlds semifinalist (2018)","NA's winningest franchise"]},
+  {id:"tl",name:"Team Liquid",mono:"TL",color:"#0a1e42",region:"LCS",stage:"swiss",seed:"LCS (rank TBD)",
+   path:"Summer top-3 (clinched)",
+   blurb:"The blue horse. A veteran international brand chasing its deepest Worlds run since 2019's semifinal.",
+   hist:["Worlds semifinalist (2019)","Multiple LCS titles","2026 Summer top-3"]},
+  {id:"tsw",name:"Team Secret Whales",mono:"TSW",color:"#0e7c86",region:"LCP",stage:"swiss",seed:"LCP #1",
+   path:"Split 3 champion + points leader",
+   blurb:"The Pacific region's new powerhouse — won both early splits of 2026 and swept the LCP playoffs to lead the region into Worlds.",
+   hist:["2026 LCP Split 1 & 2 champion","4th Worlds appearance","Swept the LCP Swiss stage 3–0"]},
+  {id:"cfo",name:"CTBC Flying Oyster",mono:"CFO",color:"#2e7d4f",region:"LCP",stage:"swiss",seed:"LCP #2",
+   path:"Split 3 runner-up",
+   blurb:"Taiwan's flagship. Four Worlds appearances in five years of existence — quietly the Pacific's most consistent team.",
+   hist:["4th appearance in 5 years","2022 Worlds group stage","2026 LCP runner-up"]},
+  {id:"mvk",name:"MVK Esports",mono:"MVK",color:"#7a5cc4",region:"LCP",stage:"playin",seed:"LCP #3",
+   path:"Championship points",
+   blurb:"Vietnam's hope. Survived a five-game war against GAM Esports to lock in a fifth appearance.",
+   hist:["5th Worlds appearance","2026 LCP 3rd place","Beat GAM 3–2 in the qualifier"]},
+  {id:"cblol1",name:"CBLOL Champion",mono:"TBD",color:"#8a97a8",region:"CBLOL",stage:"swiss",seed:"CBLOL #1",
+   path:"Split 2 champion — decided Oct 10",
+   blurb:"Brazil's champion goes straight to the Swiss stage. LOUD, Los Grandes, FURIA and RED Canids Kalunga are still fighting for it.",
+   hist:["⚠︎ TBD — CBLOL Split 2 playoffs conclude Oct 10"]},
+  {id:"cblol2",name:"CBLOL Runner-Up",mono:"TBD",color:"#8a97a8",region:"CBLOL",stage:"playin",seed:"CBLOL #2",
+   path:"Split 2 runner-up — decided Oct 10",
+   blurb:"Brazil's second ticket (awarded in March after fan outcry) means a second South American team in the Play-In.",
+   hist:["⚠︎ TBD — CBLOL Split 2 playoffs conclude Oct 10"]},
+  {id:"lcs3",name:"LCS Third Seed",mono:"TBD",color:"#8a97a8",region:"LCS",stage:"playin",seed:"LCS #3",
+   path:"Summer 3rd place — decided Oct 4",
+   blurb:"The last Play-In slot from the host region. Cloud9 and Team Liquid have clinched — but their final ranks decide who lands here.",
+   hist:["⚠︎ TBD — LCS Summer playoffs conclude Oct 4"]}
+];
+
+const PLAYERS = [
+  {name:"Faker",real:"Lee Sang-hyeok",role:"Mid",team:"T1",flag:"🇰🇷",color:"#e2012d",
+   blurb:"The undisputed GOAT. Six world titles, three in a row at age 30, and still the most-watched player on the planet. A fourth straight title would be the greatest feat in esports history.",
+   facts:["6× world champion (2013–2025)","8 Worlds finals appearances","Worlds 2025 champion + Finals MVP-caliber run"]},
+  {name:"Chovy",real:"Jeong Ji-hoon",role:"Mid",team:"Gen.G",flag:"🇰🇷",color:"#111111",
+   blurb:"The best laner in the world, full stop. Gen.G's quiet architect — and the story of 2026 is whether he finally adds a world title to a career full of domestic dominance.",
+   facts:["Multiple LCK titles with Gen.G","MSI 2024 champion","Worlds semifinalist 2022–2025"]},
+  {name:"Zeka",real:"Kim Geon-woo",role:"Mid",team:"Hanwha Life",flag:"🇰🇷",color:"#2ab39b",
+   blurb:"The miracle worker of 2022, when DRX made the greatest underdog run in history. Now the centerpiece of an MSI-winning Hanwha Life — a second title would cement his legacy.",
+   facts:["2022 world champion with DRX","MSI 2026 champion","Clutch performer — famous for elimination-game heroics"]},
+  {name:"Knight",real:"Zhuo Ding",role:"Mid",team:"Bilibili Gaming",flag:"🇨🇳",color:"#00a0a8",
+   blurb:"China's generational mid laner. Two MSI titles, a 2024 Worlds final heartbreak — the talent is proven, only the trophy is missing.",
+   facts:["MSI champion (2023, 2024)","2024 Worlds runner-up","LPL MVP-caliber seasons since 2019"]},
+  {name:"Caps",real:"Rasmus Winther",role:"Mid",team:"G2 Esports",flag:"🇩🇰",color:"#111111",
+   blurb:"Europe's greatest player. Back-to-back Worlds finals in 2018–19, an MSI title, and more LEC trophies than anyone — 'Baby Faker' grew up to write his own story.",
+   facts:["2× Worlds finalist (2018, 2019)","MSI 2019 champion","Most LEC titles of any player"]},
+  {name:"Gumayusi",real:"Lee Min-hyeong",role:"Bot (ADC)",team:"T1",flag:"🇰🇷",color:"#e2012d",
+   blurb:"The reigning Finals MVP and the sharpest marksman in the game. Three straight titles with T1 — one more makes him part of the first-ever four-peat.",
+   facts:["Worlds 2025 Finals MVP","3× world champion (2023–2025)","Famous for game-winning teamfights"]},
+  {name:"Kiin",real:"Kim Gi-in",role:"Top",team:"Gen.G",flag:"🇰🇷",color:"#111111",
+   blurb:"The most consistent top laner of the LCK era. Rock-steady in lane, ice-cold in teamfights — and overdue for a deep international run.",
+   facts:["LCK All-Pro regular since 2018","2026 LCK champion","International breakout still due"]},
+  {name:"Bin",real:"Chen Ze-Bin",role:"Top",team:"Bilibili Gaming",flag:"🇨🇳",color:"#00a0a8",
+   blurb:"The most flamboyant top laner alive. Two-time Worlds finalist by 24, famous for 1-v-2 escapes and all-in plays that shouldn't work but do.",
+   facts:["2× Worlds finalist (2021, 2024)","2021 finalist with Suning","LPL's highlight machine"]}
+];
+
+const HISTORY = [
+  {year:2025,win:"T1",reg:"LCK",runner:"KT Rolster",score:"3–2",city:"Chengdu"},
+  {year:2024,win:"T1",reg:"LCK",runner:"Bilibili Gaming",score:"3–2",city:"London"},
+  {year:2023,win:"T1",reg:"LCK",runner:"Weibo Gaming",score:"3–0",city:"Seoul·Busan"},
+  {year:2022,win:"DRX",reg:"LCK",runner:"T1",score:"3–2",city:"Mexico City·Atlanta"},
+  {year:2021,win:"EDward Gaming",reg:"LPL",runner:"DWG KIA",score:"3–2",city:"Reykjavík"},
+  {year:2020,win:"DAMWON Gaming",reg:"LCK",runner:"Suning",score:"3–1",city:"Shanghai"},
+  {year:2019,win:"FunPlus Phoenix",reg:"LPL",runner:"G2 Esports",score:"3–0",city:"Paris·Madrid·Berlin"},
+  {year:2018,win:"Invictus Gaming",reg:"LPL",runner:"Fnatic",score:"3–0",city:"Incheon"},
+  {year:2017,win:"Samsung Galaxy",reg:"LCK",runner:"SK Telecom T1",score:"3–0",city:"Beijing"},
+  {year:2016,win:"SK Telecom T1",reg:"LCK",runner:"Samsung Galaxy",score:"3–2",city:"Los Angeles"},
+  {year:2015,win:"SK Telecom T1",reg:"LCK",runner:"KOO Tigers",score:"3–1",city:"Berlin"},
+  {year:2014,win:"Samsung White",reg:"LCK",runner:"Star Horn Royal Club",score:"3–1",city:"Taipei·Singapore·Seoul"},
+  {year:2013,win:"SK Telecom T1",reg:"LCK",runner:"Royal Club",score:"3–0",city:"Los Angeles"},
+  {year:2012,win:"Taipei Assassins",reg:"LMS",runner:"Azubu Frost",score:"3–1",city:"Los Angeles"},
+  {year:2011,win:"Fnatic",reg:"EU",runner:"Against All Authority",score:"2–1",city:"Jönköping"}
+];
+
+/* ================= RENDER ================= */
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!==undefined)e.innerHTML=html;return e;}
+
+function teamCard(t){
+  const r=REGIONS[t.region];
+  const stagePill = t.stage==="swiss" ? '<span class="pill t">→ Swiss</span>'
+    : t.stage==="playin" ? '<span class="pill b">→ Play-In</span>'
+    : '<span class="pill a">seed TBD</span>';
+  const c=el("div","card team");
+  c.innerHTML =
+    '<div class="team-head"><div class="mono" style="background:'+t.color+'">'+t.mono+'</div>'+
+    '<div><h3>'+t.name+'</h3><div class="sub">'+(r?r.flag+" "+r.label:"")+'</div></div>'+
+    '<div style="margin-left:auto">'+stagePill+'</div></div>'+
+    '<div class="chips"><span class="chip"><b>'+t.seed+'</b></span><span class="chip">'+t.path+'</span></div>'+
+    '<p>'+t.blurb+'</p>'+
+    '<ul class="list-tight">'+t.hist.map(h=>'<li>'+h+'</li>').join("")+'</ul>'+
+    '<div class="roster"><span>⚠︎ roster TBD</span></div>';
+  return c;
+}
+
+function renderTeams(filter){
+  const g=document.getElementById("teamsGrid"); g.innerHTML="";
+  TEAMS.filter(t=>!filter||t.region===filter).forEach(t=>g.appendChild(teamCard(t)));
+  if(!g.children.length) g.appendChild(el("p","lede","No teams in this region yet."));
+}
+
+function renderRegionbar(){
+  const bar=document.getElementById("regionbar"); bar.innerHTML="";
+  const mk=(label,key,count)=>{
+    const b=el("button",null,label+(count?" · "+count:""));
+    b.onclick=()=>{[...bar.children].forEach(x=>x.classList.remove("active"));b.classList.add("active");renderTeams(key);};
+    bar.appendChild(b); return b;
+  };
+  mk("All",null,TEAMS.length).classList.add("active");
+  Object.keys(REGIONS).filter(k=>k!=="TBD").forEach(k=>{
+    mk(REGIONS[k].flag+" "+k,k,TEAMS.filter(t=>t.region===k).length);
+  });
+}
+
+function renderPlayers(){
+  const g=document.getElementById("playersGrid"); g.innerHTML="";
+  PLAYERS.forEach(p=>{
+    const c=el("div","card player");
+    c.innerHTML =
+      '<div class="mono" style="width:40px;height:40px;font-size:13px;background:'+p.color+'">'+p.role[0]+'</div>'+
+      '<div class="role"><span class="pill g">'+p.role+' · '+p.flag+'</span></div>'+
+      '<h3>'+p.name+'</h3><div class="alias">'+p.real+' · '+p.team+'</div>'+
+      '<p>'+p.blurb+'</p><ul class="list-tight">'+p.facts.map(f=>'<li>'+f+'</li>').join("")+'</ul>';
+    g.appendChild(c);
+  });
+}
+
+function renderHistory(){
+  const c=document.getElementById("histCard"); let html="";
+  HISTORY.forEach(h=>{
+    html+='<div class="hist-row"><div class="hist-year">'+h.year+'</div>'+
+      '<div class="hist-main"><span>🏆</span><b>'+h.win+'</b> <span class="pill g">'+h.reg+'</span>'+
+      '<span class="beat">beat '+h.runner+' '+h.score+'</span> <span style="color:var(--faint);font-size:12px">'+h.city+'</span></div></div>';
+  });
+  c.innerHTML=html;
+}
+
+/* ================= TABS ================= */
+const VIEWS=["home","schedule","bracket","teams","players","history"];
+function activate(name){
+  VIEWS.forEach(v=>{
+    const s=document.getElementById("view-"+v); if(s)s.classList.toggle("active",v===name);
+  });
+  document.querySelectorAll("#tabs a").forEach(a=>a.classList.toggle("active",a.dataset.tab===name));
+  window.scrollTo({top:0,behavior:"instant"});
+  if(history.replaceState)history.replaceState(null,"","#"+name);
+}
+document.getElementById("tabs").addEventListener("click",e=>{
+  const a=e.target.closest("a"); if(!a)return; e.preventDefault(); activate(a.dataset.tab);
+});
+function initialView(){
+  const h=(location.hash||"").replace("#","");
+  activate(VIEWS.includes(h)?h:"home");
+}
+
+renderTeams(); renderRegionbar(); renderPlayers(); renderHistory(); initialView();
+</script>
+</main>
+
+<footer>
+  <div><b>Worlds 2026 Fan Hub</b> — a fan-made guide, not affiliated with or endorsed by Riot Games.</div>
+  <div style="margin-top:6px">Sources: lolesports.com announcements &amp; Wikipedia's 2026 Worlds pages · data current as of late September 2026 · TBD items fill in automatically as announced.</div>
+  <div style="margin-top:6px">Built with 💛 for Matt — Spanton family &amp; friends.</div>
+</footer>
+</body>
+</html>
